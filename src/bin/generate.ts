@@ -4,10 +4,13 @@ import { Command } from "commander";
 import FlatQueue from "flatqueue";
 import { LoreGenerator } from "../modules/lore-generator";
 import { setupHeadless } from "../utils/headless";
+import { PluginManager } from "../utils/plugin-manager";
 
 // Initialize headless environment
 const _dom = setupHeadless();
 (global as any).FlatQueue = FlatQueue;
+
+const pluginManager = new PluginManager();
 
 // Mock some essential UI elements data for the generator
 const mockElements: Record<string, any> = {
@@ -69,11 +72,16 @@ program
   .option("-s, --seed <string>", "Seed for the random number generator")
   .option("-o, --output <path>", "Path to save the generated JSON", "world.json")
   .option("-k, --ai-key <string>", "Google Gemini API Key for lore generation")
+  .option("-p, --plugins <path>", "Directory containing plugins", "plugins")
   .action(async options => {
     console.log("🚀 Starting world generation...");
     const timeStart = Date.now();
 
     try {
+      // 0. Load Plugins
+      await pluginManager.loadPlugins(options.plugins);
+      await pluginManager.runHook("preGenerate", options);
+
       // 1. Load Modules
       console.log("📦 Loading generation modules...");
       await import("../modules/index");
@@ -138,7 +146,10 @@ program
       if (global.States) global.States.generate();
       if (global.Burgs) global.Burgs.generate();
 
-      // 7. Generate AI Lore (Phase 2)
+      // 7. Post-Geography Hook
+      await pluginManager.runHook("postGeography", global);
+
+      // 8. Generate AI Lore (Phase 2)
       let lore = null;
       if (options.aiKey) {
         console.log("🧠 Weaving world lore with Gemini AI...");
@@ -146,7 +157,12 @@ program
         lore = await loreGenerator.generateLore(global);
       }
 
-      // 8. Export
+      // 9. Post-Lore Hook
+      if (lore) {
+        await pluginManager.runHook("postLore", lore);
+      }
+
+      // 10. Export
       const worldData = {
         seed: global.seed,
         lore: lore,
@@ -162,6 +178,8 @@ program
           cultures: global.pack.cultures
         }
       };
+
+      await pluginManager.runHook("onExport", worldData);
 
       fs.writeFileSync(options.output, JSON.stringify(worldData, null, 2));
 

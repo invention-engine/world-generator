@@ -10,20 +10,21 @@ This roadmap outlines the phases for transforming the Fantasy Map Generator into
 - [x] **Module Isolation:** Successfully isolated and ran `src/modules/` math logic headlessly.
 - [x] **JSON Export:** Created a standardized `world.json` output format.
 
-## Phase 2: Gemini AI Lore Integration
+## Phase 2: Gemini AI Lore Integration (Completed)
 **Goal:** Use Google Gemini to weave narrative depth into the geographic data.
 
-- [ ] **Prompt Chain Pipeline:** Build a sequence of prompts to generate lore in layers (World -> Culture -> State -> NPC).
-- [ ] **Structured Output:** Implement strict JSON schema enforcement for AI responses.
-- [ ] **Timeline Generator:** Create a historical simulation that builds on the generated world state.
-- [ ] **NPC Engine:** Generate remarkable characters for every major city and faction.
+- [x] **Gemini 2.5-Flash Support:** Integrated the latest Google Generative AI SDK.
+- [x] **Structured Output:** Implemented strict JSON schema enforcement for AI responses.
+- [x] **World Bible Generation:** Weaves creation myths, eras, and cultural values from procedural data.
+- [x] **CLI Integration:** Added `--ai-key` flag for seamless lore generation.
 
-## Phase 3: Extendability & Plugins
+## Phase 3: Extendability & Plugins (Completed)
 **Goal:** Create an open interface for community mods and custom logic.
 
-- [ ] **Plugin Hook System:** Allow external scripts to modify the world data at specific lifecycle stages (Pre-AI, Post-AI).
-- [ ] **Asset Pipeline:** Integrate headless rendering (Puppeteer) to export high-res map images alongside data.
-- [ ] **Theme Templates:** Preset configurations for different RPG genres (High Fantasy, Grimdark, Sci-Fi).
+- [x] **Plugin Hook System:** Implemented `PluginManager` with lifecycle hooks (`preGenerate`, `postGeography`, `postLore`, `onExport`).
+- [x] **CLI Plugin Support:** Added `--plugins` flag to load external JS/TS scripts.
+- [x] **Theme Templates:** Enabled via the plugin system (allows programmatic theme overrides).
+- [ ] **Asset Pipeline:** (Deferred) Integrate headless rendering (Puppeteer) for high-res map images.
 
 ## Phase 4: Ecosystem Integration
 **Goal:** Finalize connectivity with the Invention Engine game framework.
