@@ -39,9 +39,12 @@ The tool operates as a multi-stage pipeline:
 
 1.  **Geography Engine (Headless FMG):** Uses Voronoi triangulation and climate simulation to create the physical world (heightmaps, biomes, rivers).
 2.  **Geopolitical Engine:** Procedurally places cities (burgs), draws state borders, and assigns cultures based on geography.
-3.  **Lore Engine (Gemini AI):** Takes the raw data and "weaves" it into a narrative. It generates world names, historical eras, and cultural values.
-4.  **Plugin Layer:** Allows external scripts to intercept and modify data at any stage.
-5.  **Exporter:** Standardizes the output into a structured JSON package.
+4.  **Lore Engine (Gemini AI):** Takes the raw data and "weaves" it into a narrative. It generates world names, historical eras, and cultural values.
+5.  **Plugin Layer:** Allows external scripts to intercept and modify data at any stage.
+6.  **Exporter:** Standardizes the output into a structured JSON package.
+
+See the full [Data Schema Reference](DATA_SCHEMA.md) for a field-by-field breakdown of the output.
+
 
 ---
 
