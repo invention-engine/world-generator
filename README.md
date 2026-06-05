@@ -1,41 +1,33 @@
-# Fantasy Map Generator
+# World Generator (CLI)
 
-Azgaar's _Fantasy Map Generator_ is a free web application that helps fantasy writers, game masters, and cartographers create and edit fantasy maps.
+The **World Generator** is a headless, AI-enhanced world-building tool for RPGs. Forked from [Azgaar's Fantasy Map Generator](https://github.com/Azgaar/Fantasy-Map-Generator), this project decouples the core geographic and political generation logic from the browser and integrates **Google Gemini AI** to generate deep lore, timelines, cultures, and remarkable characters.
 
-Link: [azgaar.github.io/Fantasy-Map-Generator](https://azgaar.github.io/Fantasy-Map-Generator).
+This tool is part of the **Invention Engine** ecosystem, designed to feed structured world data into game engines for automated web-RPG creation.
 
-Refer to the [project wiki](https://github.com/Azgaar/Fantasy-Map-Generator/wiki) for guidance. The current progress is tracked in [Trello](https://trello.com/b/7x832DG4/fantasy-map-generator). Some details are covered in my old blog [_Fantasy Maps for fun and glory_](https://azgaar.wordpress.com).
+## 🌟 Vision
 
-[![preview](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/9502eae9-92e0-4d0d-9f17-a2ba4a565c01)](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/11a42446-4bd5-4526-9cb1-3ef97c868992)
+A "vibe-coded" world generator that transforms a simple prompt into a massive, structured JSON database containing:
+- **Geography:** Accurate Voronoi-based terrain, biomes, and climate.
+- **Geopolitics:** Procedurally generated states, provinces, and burgs.
+- **Lore:** AI-generated world bibles, creation myths, and historical eras.
+- **NPCs:** Notable characters with motivations, relationships, and backgrounds.
 
-[![preview](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/e751a9e5-7986-4638-b8a9-362395ef7583)](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/e751a9e5-7986-4638-b8a9-362395ef7583)
+## 🏗️ Ecosystem Role
 
-[![preview](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/b0d0efde-a0d1-4e80-8818-ea3dd83c2323)](https://github.com/Azgaar/Fantasy-Map-Generator/assets/26469650/b0d0efde-a0d1-4e80-8818-ea3dd83c2323)
+1. **Game Engine:** Consumes the output of this generator to manage world mechanics and entities.
+2. **World Generator (This Repo):** The "Brain" that produces the base-line story and spatial data.
+3. **Modding Interface:** An extendable plugin system to allow manual overrides and custom generation rules.
+4. **Personalization Layer:** The user-facing configuration that directs the generator's intent.
 
-Join our [Discord server](https://discordapp.com/invite/X7E84HU) and [Reddit community](https://www.reddit.com/r/FantasyMapGenerator) to share your creations, discuss the Generator, suggest ideas and get the most recent updates.
+## 🚀 Getting Started
 
-Contact me via [email](mailto:azgaar.fmg@yandex.com) if you have non-public suggestions. For bug reports please use [GitHub issues](https://github.com/Azgaar/Fantasy-Map-Generator/issues) or _#fmg-bugs_ channel on Discord. If you are facing performance issues, please read [the tips](https://github.com/Azgaar/Fantasy-Map-Generator/wiki/Tips#performance-tips).
+*Note: This project is currently in the transition phase from a browser-based tool to a headless CLI.*
 
-You can support the project on [Patreon](https://www.patreon.com/azgaar).
+### Current Status: Transitioning
+- [x] Initial Repository Setup
+- [ ] Headless Node.js Implementation
+- [ ] Gemini AI Integration
 
-_Inspiration:_
+## 📜 License
 
-- Martin O'Leary's [_Generating fantasy maps_](https://mewo2.com/notes/terrain)
-
-- Amit Patel's [_Polygonal Map Generation for Games_](http://www-cs-students.stanford.edu/~amitp/game-programming/polygon-map-generation)
-
-- Scott Turner's [_Here Dragons Abound_](https://heredragonsabound.blogspot.com)
-
-## Contribution
-
-Pull requests are highly welcomed. The codebase is messy and I will appreciate if you start with minor changes. Check out the [data model](https://github.com/Azgaar/Fantasy-Map-Generator/wiki/Data-model) before contributing.
-
-The codebase is gradually transitioning from **vanilla JavaScript to TypeScript** while maintaining compatibility with the existing generation pipeline and old `.map` user files.
-
-The expected **future** architecture is based on a separation between **world data**, **procedural generation**, **interactive editing**, and **rendering**. The application is conceptually divided into four main layers: world data and styles (state), generators (model), editors (controllers), renderers (view).
-
-Flow:
-settings → generators → world data → renderer
-UI → editors → world data → renderer.
-
-The data layer must contain no logic and no rendering code. Generators implement the procedural world simulation. Editors implement interactive editing tools used by the user. They perform controlled mutations of the world state. Editors can be viewed as interactive generators. The renderer converts the world state into SVG or WebGl graphics. Renderer must be pure visualization step and not modify world data.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. Based on work by Azgaar.
