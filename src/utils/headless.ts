@@ -39,11 +39,13 @@ export function setupHeadless() {
   // Mock FontFace and document.fonts
   const FontFaceMock = class {
     constructor() {}
-    load() { return Promise.resolve(this); }
+    load() {
+      return Promise.resolve(this);
+    }
   };
   (window as any).FontFace = FontFaceMock;
   (global as any).FontFace = FontFaceMock;
-  
+
   (document as any).fonts = {
     add: () => {},
     clear: () => {},
@@ -85,8 +87,8 @@ export function setupHeadless() {
     writable: true,
     configurable: true
   });
-  global.requestAnimationFrame = (callback) => setTimeout(callback, 0) as any;
-  global.cancelAnimationFrame = (id) => clearTimeout(id);
+  global.requestAnimationFrame = callback => setTimeout(callback, 0) as any;
+  global.cancelAnimationFrame = id => clearTimeout(id);
 
   // Mock performance
   global.performance = window.performance;
