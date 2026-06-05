@@ -5,13 +5,13 @@ import { pathToFileURL } from "node:url";
 export interface PluginHooks {
   /** Called before the generation pipeline starts */
   preGenerate?: (options: any) => Promise<void> | void;
-  
+
   /** Called after geography (FMG) is generated, but before Lore (AI) */
   postGeography?: (worldData: any) => Promise<void> | void;
-  
+
   /** Called after Lore (AI) is generated */
   postLore?: (worldData: any) => Promise<void> | void;
-  
+
   /** Called just before the final data is exported to JSON */
   onExport?: (worldData: any) => Promise<void> | void;
 }

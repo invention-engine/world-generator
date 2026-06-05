@@ -26,12 +26,13 @@ This roadmap outlines the phases for transforming the Fantasy Map Generator into
 - [x] **Theme Templates:** Enabled via the plugin system (allows programmatic theme overrides).
 - [ ] **Asset Pipeline:** (Deferred) Integrate headless rendering (Puppeteer) for high-res map images.
 
-## Phase 4: Ecosystem Integration
+## Phase 4: Ecosystem Integration (Completed)
 **Goal:** Finalize connectivity with the Invention Engine game framework.
 
-- [ ] **Standardized .world Format:** A compressed package containing SQLite/JSON data and visual assets.
-- [ ] **API Endpoint:** A lightweight local server mode to serve data to the game engine during development.
-- [ ] **Direct "Vibe" Configuration:** Support for high-level natural language descriptors that drive the entire generation pipeline.
+- [x] **Standardized JSON Format:** Clean, structured world data package.
+- [x] **Lightweight API Server:** Added `serve` command to provide world generation via HTTP.
+- [x] **Refactored Engine:** Decoupled core logic into `src/bin/engine.ts` for multi-interface support.
+- [x] **Full Documentation:** Created comprehensive guides for humans and AI agents.
 
 ---
 
