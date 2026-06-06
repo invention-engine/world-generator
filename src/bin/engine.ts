@@ -123,12 +123,12 @@ export async function runWorldGenerator(options: {
         cellCount = sizePresetMap[normalized];
       } else if (normalized.endsWith("k")) {
         const num = parseFloat(normalized.slice(0, -1));
-        if (!isNaN(num) && num > 0) {
+        if (!Number.isNaN(num) && num > 0) {
           cellCount = Math.round(num * 1000);
         }
       } else {
         const parsed = parseInt(normalized, 10);
-        if (!isNaN(parsed) && parsed > 0) {
+        if (!Number.isNaN(parsed) && parsed > 0) {
           cellCount = parsed;
         }
       }
